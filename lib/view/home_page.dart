@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                     showNewPageProgressIndicatorAsGridChild: true,
                     showNewPageErrorIndicatorAsGridChild: false,
                     showNoMoreItemsIndicatorAsGridChild: true,
-                    pagingController: controller.pagingController,
+                    pagingController: controller.pagingController.value,
                     builderDelegate: PagedChildBuilderDelegate(
                       itemBuilder: (context, item, index) => ImageCard(
                         imageData: item,

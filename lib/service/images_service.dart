@@ -10,12 +10,12 @@ class ImagesService {
 
   //This function fetches images from Pixabay and converts it into model
   Future<List<ImageData>> fetchImages(
-      {required int page, required int pageSize}) async {
+      {required int page, required int pageSize, String? searchWord}) async {
     List<ImageData> images = [];
     try {
       logger.i(page);
       final response = await http.get(Uri.parse(
-          "https://pixabay.com/api/?key=${dotenv.env['PIXABAY_KEY']}&image_type=photo&page=$page&per_page=$pageSize"));
+          "https://pixabay.com/api/?key=${dotenv.env['PIXABAY_KEY']}&image_type=photo&page=$page&per_page=$pageSize${searchWord != null ? "&q=$searchWord" : ""}"));
 
       final data = jsonDecode(response.body);
 

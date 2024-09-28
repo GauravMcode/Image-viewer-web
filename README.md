@@ -13,3 +13,4 @@ Flutter Application that fetches images from Pixabay.
 ## Architecture:
 
 The Project has been structured into Model View Controller (MVC) and Services folder
+Along with images, The cards also display user name and profile photo, tags, likes and views

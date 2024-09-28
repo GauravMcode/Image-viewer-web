@@ -9,16 +9,14 @@ class ImagesController extends GetxController {
   final imagesData = RxList<ImageData>([]);
   int pageSize = 10;
   var logger = Logger();
+  RxString? searchWord;
   final imageService = ImagesService();
-  final PagingController<int, ImageData> pagingController =
-      PagingController(firstPageKey: 1);
+  var pagingController = PagingController<int, ImageData>(firstPageKey: 1).obs;
 
-  
-  
   //initialize pageController when controller is initialized
   @override
   void onInit() {
-    pagingController.addPageRequestListener((pageKey) {
+    pagingController.value.addPageRequestListener((pageKey) {
       getImages(pageKey);
     });
     super.onInit();
@@ -28,17 +26,19 @@ class ImagesController extends GetxController {
   getImages(int pageKey) async {
     try {
       final newImages = await imageService.fetchImages(
-          page: (pageKey ~/ pageSize) + 1, pageSize: pageSize);
+          page: (pageKey ~/ pageSize) + 1,
+          pageSize: pageSize,
+          searchWord: searchWord?.value);
       final isLastPage = newImages.length < pageSize;
       if (isLastPage) {
-        pagingController.appendLastPage(newImages);
+        pagingController.value.appendLastPage(newImages);
       } else {
         final nextPageKey = pageKey + newImages.length;
-        pagingController.appendPage(newImages, nextPageKey);
+        pagingController.value.appendPage(newImages, nextPageKey);
       }
     } catch (e) {
       logger.e(e);
-      pagingController.error(e);
+      pagingController.value.error(e);
     }
   }
 }
