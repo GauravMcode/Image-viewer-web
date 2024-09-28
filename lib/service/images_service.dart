@@ -7,6 +7,8 @@ import 'package:logger/web.dart';
 
 class ImagesService {
   var logger = Logger();
+
+  //This function fetches images from Pixabay and converts it into model
   Future<List<ImageData>> fetchImages(
       {required int page, required int pageSize}) async {
     List<ImageData> images = [];

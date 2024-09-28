@@ -1,16 +1,15 @@
-# images_viewer
+# Pixabay Images App
 
-A new Flutter project.
+Flutter Application that fetches images from Pixabay. 
 
-## Getting Started
+## Packages Used:
+-  *infinite_scroll_pagination* is used for pagination and after fetching 10 images the api is called again
+-  *get* for getx state management
+-  *http* for api calls
+-  *loading_animation_widget* for loader animations
+-  *logger* for logging purpose
+-  *flutter_dotenv* to secure api key of pixabay
 
-This project is a starting point for a Flutter application.
+## Architecture:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The Project has been structured into Model View Controller (MVC) and Services folder

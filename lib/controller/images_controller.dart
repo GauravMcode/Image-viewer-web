@@ -13,6 +13,9 @@ class ImagesController extends GetxController {
   final PagingController<int, ImageData> pagingController =
       PagingController(firstPageKey: 1);
 
+  
+  
+  //initialize pageController when controller is initialized
   @override
   void onInit() {
     pagingController.addPageRequestListener((pageKey) {
@@ -21,6 +24,7 @@ class ImagesController extends GetxController {
     super.onInit();
   }
 
+  //calls fetchImage from service file and add list of images to pageController
   getImages(int pageKey) async {
     try {
       final newImages = await imageService.fetchImages(

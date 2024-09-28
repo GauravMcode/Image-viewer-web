@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:images_viewer/common/constants/asset_path.dart';
 import 'package:images_viewer/common/constants/colors.dart';
 import 'package:images_viewer/model/image_data.dart';
 
@@ -24,7 +25,7 @@ class _ImageCardState extends State<ImageCard> {
         duration: const Duration(milliseconds: 300),
         transform: Matrix4.identity()
           ..scale(isHovering ? 1.2 : 1.0, isHovering ? 1.2 : 1,
-              isHovering ? 10 : 1),
+              isHovering ? 1.5 : 1),
         transformAlignment: Alignment.center,
         decoration: BoxDecoration(
           gradient: const LinearGradient(colors: [
@@ -39,7 +40,6 @@ class _ImageCardState extends State<ImageCard> {
         child: InkWell(
           onTap: () {},
           onHover: (value) {
-            print(value);
             setState(() {
               isHovering = value;
             });
@@ -48,6 +48,24 @@ class _ImageCardState extends State<ImageCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 20,
+                      backgroundImage: NetworkImage(
+                          widget.imageData.userImageUrl ?? placeHolderImage),
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      widget.imageData.user?.toString() ?? "User",
+                      style: const TextStyle(overflow: TextOverflow.ellipsis),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DecoratedBox(
@@ -68,6 +86,10 @@ class _ImageCardState extends State<ImageCard> {
                   ),
                 ),
               ),
+              const SizedBox(width: 5),
+              FittedBox(
+                  child: Text(
+                      "#${widget.imageData.tags?.replaceAll(', ', ' #')}")),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Row(
@@ -108,5 +130,4 @@ class _ImageCardState extends State<ImageCard> {
   }
 }
 
-const placeHolderImage =
-    "https://cdn.pixabay.com/photo/2022/04/06/12/49/countryside-7115530_1280.jpg";
+

@@ -87,10 +87,10 @@ class HomePage extends StatelessWidget {
                     ),
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
-                      mainAxisExtent: 250,
-                      maxCrossAxisExtent: 300,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
+                      mainAxisExtent: 280,
+                      maxCrossAxisExtent: 350,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
                     ),
                   );
                 }),
